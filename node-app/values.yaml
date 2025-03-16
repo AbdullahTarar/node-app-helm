@@ -1,0 +1,22 @@
+replicaCount: 2
+
+image:
+  repository: abdullahtarar222/demo-node-app
+  tag: directory-app
+  pullPolicy: Always
+
+service:
+  type: LoadBalancer
+  port: 80
+  targetPort: 5000
+
+ingress:
+  enabled: false
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 256Mi
+  requests:
+    cpu: 250m
+    memory: 128Mi

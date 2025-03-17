@@ -12,18 +12,18 @@ service:
 
 ingress:
   enabled: true
-  className: "alb"
+  className: alb
   annotations:
-    kubernetes.io/ingress.class: "alb"
-    alb.ingress.kubernetes.io/scheme: "internet-facing"
+    alb.ingress.kubernetes.io/load-balancer-type: "nlb"   # ✅ Use NLB instead of ALB
     alb.ingress.kubernetes.io/target-type: "ip"
-    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80, "HTTPS": 443}]'
-    alb.ingress.kubernetes.io/group.name: "node-app-alb"
+    alb.ingress.kubernetes.io/scheme: "internet-facing"
   hosts:
-    - host: "*"
+    - host: "abdullah-node-app.mooo.com"
       paths:
         - path: "/"
           pathType: "Prefix"
+
+
 
 serviceAccount:
   create: true

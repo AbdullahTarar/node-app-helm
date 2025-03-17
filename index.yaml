@@ -3,12 +3,12 @@ entries:
   node-app:
   - apiVersion: v2
     appVersion: latest
-    created: "2025-03-17T17:44:46.949045455+05:00"
+    created: "2025-03-17T18:57:53.360532132+05:00"
     description: A Helm chart for deploying the Node.js app
-    digest: fc94c39d5e2fc0eb81a89cd5c27bd1e6e324bbe9a9924103a44bf6082fdbcf62
+    digest: 1714842def4faa4f4b40aeae9370c020dee2e0f0c5314311d6a9f55252cb7840
     name: node-app
     type: application
     urls:
-    - https://abdullahtarar.github.io/node-app-helm/node-app-0.1.0.tgz
+    - node-app-0.1.0.tgz
     version: 0.1.0
-generated: "2025-03-17T17:44:46.948616419+05:00"
+generated: "2025-03-17T18:57:53.360275138+05:00"

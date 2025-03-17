@@ -37,3 +37,12 @@ ingress:
 serviceAccount:
   create: true
   name: "node-app-sa"
+
+
+resources:
+  limits:
+    cpu: "500m"
+    memory: "512Mi"
+  requests:
+    cpu: "250m"
+    memory: "256Mi"

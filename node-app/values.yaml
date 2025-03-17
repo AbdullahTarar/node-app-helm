@@ -2,26 +2,35 @@ replicaCount: 2
 
 image:
   repository: abdullahtarar222/demo-node-app
-  tag: directory-app
+  tag: node-app
   pullPolicy: Always
 
 service:
-  type: LoadBalancer
+  type: NodePort  # ✅ Change from LoadBalancer to NodePort
+  name: node-app-service  # ✅ Match this with the service name in ingress
   port: 80
   targetPort: 5000
+
 
 ingress:
   enabled: true
   className: alb
   annotations:
-    alb.ingress.kubernetes.io/load-balancer-type: "nlb"   # ✅ Use NLB instead of ALB
-    alb.ingress.kubernetes.io/target-type: "ip"
-    alb.ingress.kubernetes.io/scheme: "internet-facing"
+    alb.ingress.kubernetes.io/load-balancer-type: "nlb"  # ✅ Create an NLB instead of ALB
+    alb.ingress.kubernetes.io/scheme: "internet-facing"  # ✅ Expose it publicly
+    alb.ingress.kubernetes.io/target-type: "ip"          # ✅ Route directly to pod IPs
+    alb.ingress.kubernetes.io/nlb-target-type: "ip"      # ✅ NLB should target pod IPs
+    alb.ingress.kubernetes.io/static-ip: "54.167.173.44" # ✅ Attach your Elastic IP
   hosts:
     - host: "abdullah-node-app.mooo.com"
       paths:
         - path: "/"
           pathType: "Prefix"
+          backend:
+            service:
+              name: node-app-service  # ✅ Target your service
+              port:
+                number: 5000
 
 
 

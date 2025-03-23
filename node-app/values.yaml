@@ -2,7 +2,7 @@ replicaCount: 2
 
 image:
   repository: abdullahtarar222/demo-node-app
-  tag: node-app
+  tag: directory-app
   pullPolicy: Always
 
 

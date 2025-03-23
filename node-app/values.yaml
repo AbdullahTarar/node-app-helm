@@ -5,11 +5,6 @@ image:
   tag: node-app
   pullPolicy: Always
 
-service:
-  type: NodePort  # ✅ Change from LoadBalancer to NodePort
-  name: node-app-service  # ✅ Match this with the service name in ingress
-  port: 80
-  targetPort: 5000
 
 service:
   name: node-app-service

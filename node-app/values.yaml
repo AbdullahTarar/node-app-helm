@@ -11,33 +11,17 @@ service:
   port: 80
   targetPort: 5000
 
-
-ingress:
-  enabled: true
-  className: alb
+service:
+  name: node-app-service
+  type: LoadBalancer
   annotations:
-    alb.ingress.kubernetes.io/load-balancer-type: "nlb"  # ✅ Create an NLB instead of ALB
-    alb.ingress.kubernetes.io/scheme: "internet-facing"  # ✅ Expose it publicly
-    alb.ingress.kubernetes.io/target-type: "ip"          # ✅ Route directly to pod IPs
-    alb.ingress.kubernetes.io/nlb-target-type: "ip"      # ✅ NLB should target pod IPs
-    alb.ingress.kubernetes.io/static-ip: "54.167.173.44" # ✅ Attach your Elastic IP
-  hosts:
-    - host: "abdullah-node-app.mooo.com"
-      paths:
-        - path: "/"
-          pathType: "Prefix"
-          backend:
-            service:
-              name: node-app-service  # ✅ Target your service
-              port:
-                number: 5000
-
-
-
-serviceAccount:
-  create: true
-  name: "node-app-sa"
-
+    service.beta.kubernetes.io/aws-load-balancer-type: external
+    service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip
+    service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
+  port: 80
+  targetPort: 5000
+  selector:
+    app: node-app
 
 resources:
   limits:
